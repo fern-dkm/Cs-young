@@ -87,14 +87,16 @@ if (!$_SESSION["UserID"]){
                     </div>
                 </div>
             <?php
-            $query ="SELECT * FROM $table_selected ORDER BY (score1+score2+score3)  desc" or die("Error:" . mysqli_error());
+            $query ="SELECT * FROM score_all LEFT   JOIN check_score_round1 ON score_all.team_id_team = check_score_round1.team_id_team
+                    LEFT   JOIN check_score_round2 ON score_all.team_id_team = check_score_round2.team_id_team
+                    LEFT   JOIN check_score_round3 ON score_all.team_id_team = check_score_round3.team_id_team" or die("Error:" . mysqli_error());
             if($result = mysqli_query($con, $query)){
                 $count_no = 0;
                 $cnt = 0;
                 while($row = $result->fetch_assoc()){
                     $cnt ++;
-                    $topscr["team".$cnt] = $row["team"];
-                    $topscr["total".$cnt] = $row["score1"]+$row["score2"]+$row["score3"];
+                    $topscr["team".$cnt] = $row["team_id_team"];
+                    $topscr["check_score_round".$cnt] = $row["check_score_round1"]+$row["check_score_round2"]+$row["check_score_round3"];
                 }
             }
             ?>
@@ -111,7 +113,7 @@ if (!$_SESSION["UserID"]){
                             </div>
                             <div class="col-6">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["total1"]; ?>  </h3>
+                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round1"]; ?>  </h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -131,7 +133,7 @@ if (!$_SESSION["UserID"]){
                             </div>
                             <div class="col-6">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["total2"]; ?></h3>
+                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round2"]; ?></h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -151,28 +153,7 @@ if (!$_SESSION["UserID"]){
                             </div>
                             <div class="col-6">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["total3"]; ?></h3>
-                                    <p class="m-0">Score</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                    <div class="card">
-                        <div class="social-graph-wrapper" style="background-color: #5b83c2;">
-                            <span class="s-icon"><i class="fas fa-award"></i></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 border-right">
-                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["team3"]; ?></h3>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["total3"]; ?></h3>
+                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round3"]; ?></h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -212,12 +193,12 @@ if (!$_SESSION["UserID"]){
                                             ?>
                                                <tr>
                                                     <td> <?php  echo $count_no; ?> </td>
-                                                    <td> <?php  echo $row['team'] ?> </td>
-                                                    <td> <?php  echo $row['pay']  ?></td>
-                                                    <td> <?php  echo $row['score1']  ?></td>
-                                                    <td> <?php  echo $row['score2']  ?></td>
-                                                    <td> <?php  echo $row['score3']  ?></td>
-                                                    <td> <?php  echo (string)($topscr["total".$count_no] ) ?> </td>
+                                                    <td> <?php  echo $row['team_id_team'] ?> </td>
+                                                    <td> <?php  echo '5148'  ?></td>
+                                                    <td> <?php  echo $row['check_score_round1']  ?></td>
+                                                    <td> <?php  echo $row['check_score_round2']  ?></td>
+                                                    <td> <?php  echo $row['check_score_round3']  ?></td>
+                                                    <td> <?php  echo (string)($topscr["check_score_round".$count_no] ) ?> </td>
                                                 </tr>
                                             <?php } ?>
                                             </tbody>

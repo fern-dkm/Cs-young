@@ -28,35 +28,34 @@
 
                 </thead>
                 <tbody>
-                    <?php
-                         $sql                 =       " SELECT check_score_round1
-                                                        FROM   score_all
-                                                        WHERE  score_all.team_id_team='id'
-                                                        UNION ALL 
-                                                        SELECT check_score_round2
-                                                        FROM   family 
-                                                        WHERE  follower='id'
-                                                        UNION ALL 
-                                                        SELECT check_score_round13
-                                                        FROM   following
-                                                        WHERE  follower='id'
-                                                        UNION ALL ";
+                <?php
+                         $sql                 =      " SELECT * FROM score_all LEFT   JOIN check_score_round1 ON score_all.team_id_team = check_score_round1.team_id_team
+                                                       LEFT   JOIN check_score_round2 ON score_all.team_id_team = check_score_round2.team_id_team
+                                                       LEFT   JOIN check_score_round3 ON score_all.team_id_team = check_score_round3.team_id_team;";
+
+
 
                          $result              =       mysqli_query($con, $sql);
                          if($result) {
                              $score_all        =     mysqli_fetch_all($result,MYSQLI_ASSOC);
-                             foreach($score_all as $score) : ?>
+                             foreach($score_all as $score) : 
+                                echo "<pre>";
+                                print_r($score);
+                                echo "</pre>";  ?>
+                             
                                 <tr id="result">
                                     <td><?php echo $score['team_id_team']; ?> </td>
+                                    <td><?php echo '12500'; ?> </td>
                                     <td><?php echo $score['check_score_round1']; ?> </td>
-                                    <td><?php echo $score['check_score_round2']; ?> </td>
-                                    <td><?php echo $score['check_score_round3']; ?> </td>+
+                                    <td><?php echo $score['check_score_round2']; ?> </td>                               
+                                    <td><?php echo $score['check_score_round3']; ?> </td>
                                                                 <!--
                                     <td><?php //echo $score['id_check_score_round3']; ?> </td>
-
+                                    https://github.com/fern-dkm/csyoungcamp.git
                                     <td><?php //echo $score['score3']; ?> </td>
-                                    <td><?php// echo $score['score1']+ $score['score2']+ $score['score3']; ?> </td>
-                                    -->
+                                     -->
+                                    <td><?php echo $score['check_score_round1']+ $score['check_score_round2']+ $score['check_score_round3']; ?> </td>
+                                   
                                 </tr>
                              <?php endforeach; 
                          }   

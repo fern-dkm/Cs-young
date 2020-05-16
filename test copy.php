@@ -24,23 +24,12 @@
                     <th> Score 1 </th>
                     <th> Score 2 </th>
                     <th> Score 3 </th>
-                    <th> Total </th>
+                    <th> Total dg</th>
 
                 </thead>
                 <tbody>
                     <?php
-                         $sql                 =       " SELECT check_score_round1
-                                                        FROM   score_all
-                                                        WHERE  score_all.team_id_team='id'
-                                                        UNION ALL 
-                                                        SELECT check_score_round2
-                                                        FROM   family 
-                                                        WHERE  follower='id'
-                                                        UNION ALL 
-                                                        SELECT check_score_round13
-                                                        FROM   following
-                                                        WHERE  follower='id'
-                                                        UNION ALL ";
+                         $sql                 =       " SELECT * FROM score_all JOIN check_score_round1 ON score_all.team_id_team = check_score_round1.team_id_team";
 
                          $result              =       mysqli_query($con, $sql);
                          if($result) {
@@ -50,7 +39,8 @@
                                     <td><?php echo $score['team_id_team']; ?> </td>
                                     <td><?php echo $score['check_score_round1']; ?> </td>
                                     <td><?php echo $score['check_score_round2']; ?> </td>
-                                    <td><?php echo $score['check_score_round3']; ?> </td>+
+                                    <td><?php echo "sdrfgdrr"; ?> </td>
+                                    <td><?php //echo $score['check_score_round3']; ?> </td>
                                                                 <!--
                                     <td><?php //echo $score['id_check_score_round3']; ?> </td>
                                     https://github.com/fern-dkm/csyoungcamp.git
