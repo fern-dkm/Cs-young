@@ -159,6 +159,27 @@ if (!$_SESSION["UserID"]){
                     </div>
 
             </div>
+            <div class="col-lg-4 col-sm-6">
+                    <div class="card">
+                        <div class="social-graph-wrapper" style="background-color: #5b83c2;">
+                            <span class="s-icon"><i class="fas fa-award"></i></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 border-right">
+                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                    <h3 class="m-1"><?php echo (string)$topscr["team3"]; ?></h3>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                    <h3 class="m-1"><?php echo (string)$topscr["total3"]; ?></h3>
+                                    <p class="m-0">Score</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
             </div>
 
             <div class="row">
