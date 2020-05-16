@@ -1,0 +1,6 @@
+Options -Indexes
+ErrorDocument 400 /ProjectFern/error/page-error-400.php
+ErrorDocument 403 /ProjectFern/error/page-error-403.php
+ErrorDocument 404 /ProjectFern/error/page-error-404.php
+ErrorDocument 500 /ProjectFern/error/page-error-500.php
+ErrorDocument 503 /ProjectFern/error/page-error-503.php
