@@ -193,7 +193,7 @@ if (!$_SESSION["UserID"]){
                                             ?>
                                                <tr>
                                                     <td> <?php  echo $count_no; ?> </td>
-                                                    <td> <?php  echo $row['team_name'] ?> </td>
+                                                    <td> <?php  echo $row['team_id_team'] ?> </td>
                                                     <td> <?php  echo '5148'  ?></td>
                                                     <td> <?php  echo $row['check_score_round1']  ?></td>
                                                     <td> <?php  echo $row['check_score_round2']  ?></td>
