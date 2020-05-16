@@ -53,7 +53,7 @@
                                     <td><?php echo $score['check_score_round3']; ?> </td>+
                                                                 <!--
                                     <td><?php //echo $score['id_check_score_round3']; ?> </td>
-
+                                    https://github.com/fern-dkm/csyoungcamp.git
                                     <td><?php //echo $score['score3']; ?> </td>
                                     <td><?php// echo $score['score1']+ $score['score2']+ $score['score3']; ?> </td>
                                     -->
