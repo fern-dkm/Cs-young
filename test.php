@@ -29,7 +29,18 @@
                 </thead>
                 <tbody>
                     <?php
-                         $sql                 =       " ";
+                         $sql                 =       " SELECT check_score_round1
+                                                        FROM   score_all
+                                                        WHERE  score_all.team_id_team='id'
+                                                        UNION ALL 
+                                                        SELECT check_score_round2
+                                                        FROM   family 
+                                                        WHERE  follower='id'
+                                                        UNION ALL 
+                                                        SELECT check_score_round13
+                                                        FROM   following
+                                                        WHERE  follower='id'
+                                                        UNION ALL ";
 
                          $result              =       mysqli_query($con, $sql);
                          if($result) {
