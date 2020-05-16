@@ -95,6 +95,9 @@ if (!$_SESSION["UserID"]){
                     $cnt ++;
                     $topscr["team".$cnt] = $row["team"];
                     $topscr["total".$cnt] = $row["score1"]+$row["score2"]+$row["score3"];
+
+
+                    
                 }
             }
             ?>
