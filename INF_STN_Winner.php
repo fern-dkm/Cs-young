@@ -87,15 +87,15 @@ if (!$_SESSION["UserID"]){
                     </div>
                 </div>
             <?php
-            $query ="SELECT * FROM score_all LEFT   JOIN check_score_round1 ON score_all.team_id_team = check_score_round1.team_id_team
-                    LEFT   JOIN check_score_round2 ON score_all.team_id_team = check_score_round2.team_id_team
-                    LEFT   JOIN check_score_round3 ON score_all.team_id_team = check_score_round3.team_id_team" or die("Error:" . mysqli_error());
+            $query ="SELECT * FROM score_all JOIN check_score_round1 ON score_all.team_id_team = check_score_round1.team_id_team
+                    JOIN check_score_round2 ON score_all.team_id_team = check_score_round2.team_id_team
+                    JOIN check_score_round3 ON score_all.team_id_team = check_score_round3.team_id_team" or die("Error:" . mysqli_error());
             if($result = mysqli_query($con, $query)){
                 $count_no = 0;
                 $cnt = 0;
                 while($row = $result->fetch_assoc()){
                     $cnt ++;
-                    $topscr["team".$cnt] = $row["team_id_team"];
+                    $topscr["team".$cnt] = $row["team_name"];
                     $topscr["check_score_round".$cnt] = $row["check_score_round1"]+$row["check_score_round2"]+$row["check_score_round3"];
                 }
             }
@@ -106,14 +106,28 @@ if (!$_SESSION["UserID"]){
                             <span class="s-icon"><i class="icon-trophy"></i></span>
                         </div>
                         <div class="row">
-                            <div class="col-6 border-right">
+                        <div class="col-6 border-right">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo $topscr["team1"]; ?> </h3>
+                                    <h3 class="m-1"><?php
+                                    if($cnt>0){
+                                        echo $topscr["team1"]; 
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?></h3>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round1"]; ?>  </h3>
+                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">                                  
+                                    <h3 class="m-1">
+                                    <?php
+                                    if($cnt>0){
+                                        echo  (string)$topscr["check_score_round1"];
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?>
+                                    </h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -126,14 +140,28 @@ if (!$_SESSION["UserID"]){
                             <span class="s-icon"><i class="fas fa-medal"></i></span>
                         </div>
                         <div class="row">
-                            <div class="col-6 border-right">
+                        <div class="col-6 border-right">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo $topscr["team2"]; ?></h3>
+                                    <h3 class="m-1"><?php
+                                    if($cnt>1){
+                                        echo $topscr["team2"]; 
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?></h3>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round2"]; ?></h3>
+                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">                                  
+                                    <h3 class="m-1">
+                                    <?php
+                                    if($cnt>1){
+                                        echo  (string)$topscr["check_score_round2"];
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?>
+                                    </h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -148,12 +176,26 @@ if (!$_SESSION["UserID"]){
                         <div class="row">
                             <div class="col-6 border-right">
                                 <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["team3"]; ?></h3>
+                                    <h3 class="m-1"><?php
+                                    if($cnt>2){
+                                        echo $topscr["team3"]; 
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?></h3>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                    <h3 class="m-1"><?php echo (string)$topscr["check_score_round3"]; ?></h3>
+                                <div class="pt-3 pb-3 pl-0 pr-0 text-center">                                  
+                                    <h3 class="m-1">
+                                    <?php
+                                    if($cnt>2){
+                                        echo  (string)$topscr["check_score_round3"];
+                                    }else{
+                                        echo "none"; 
+                                    }
+                                    ?>
+                                    </h3>
                                     <p class="m-0">Score</p>
                                 </div>
                             </div>
@@ -193,7 +235,7 @@ if (!$_SESSION["UserID"]){
                                             ?>
                                                <tr>
                                                     <td> <?php  echo $count_no; ?> </td>
-                                                    <td> <?php  echo $row['team_id_team'] ?> </td>
+                                                    <td> <?php  echo $row['team_name'] ?> </td>
                                                     <td> <?php  echo '5148'  ?></td>
                                                     <td> <?php  echo $row['check_score_round1']  ?></td>
                                                     <td> <?php  echo $row['check_score_round2']  ?></td>
